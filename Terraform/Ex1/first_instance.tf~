@@ -1,0 +1,14 @@
+provider "aws" {
+  region = "us-west-1"
+}
+
+resource "aws_instance" "intro" {
+  ami                    = "ami-066f98455b59ca1ee"
+  instance_type          = "t2.micro"
+  availability_zone      = "us-west-1b"
+  key_name               = "terr_key"
+  vpc_security_group_ids = ["sg-04ecda82424f51869"]
+  tags = {
+    Name = "TerrInstance"
+  }
+}

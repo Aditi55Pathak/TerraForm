@@ -2,6 +2,27 @@
 
 This repository contains an exercise on using Terraform for provisioning infrastructure as code (IaC). In this exercise, I created and managed cloud resources using Terraform's declarative configuration language. This document provides an overview of the project setup, required tools, and steps to run the exercise.
 
+## About Terraform
+
+Terraform (by HashiCorp) is an open-source tool that has transitioned to a business license, meaning it is no longer open source and cannot be forked to design your own version of Terraform. 
+
+### Key Features:
+- **Infrastructure as Code (IaC)**: Terraform enables automated infrastructure management, eliminating the need for manual setup in the console and reducing the likelihood of errors.
+
+### How to Write Terraform:
+- **Configuration Language**: Terraform uses HCL (HashiCorp Configuration Language) for defining infrastructure.
+
+Terraform facilitates the writing and management of infrastructure. 
+
+### Who Manages the Infrastructure?
+This is where **Ansible** comes into the picture. Ansible is a configuration management tool that helps manage the configuration of systems built by Terraform.
+
+### What Can We Do with Terraform?
+- Manage **Files**
+- Manage **Docker**
+- Provision **AWS/Azure Resources**
+- Deploy **WordPress**
+
 ## Prerequisites
 
 Before running the Terraform scripts in this exercise, make sure you have the following:

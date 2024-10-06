@@ -31,91 +31,96 @@ Before running the Terraform scripts in this exercise, make sure you have the fo
 2. **Cloud Provider Account**: Ensure you have an active account with a cloud provider (e.g., AWS, Azure, GCP) and the necessary credentials for provisioning resources.
    - AWS CLI installed and configured (if you're using AWS).
 
-## Project Structure
+## Important Points 
 
-The repository contains the following key files:
+### How to Write HCL:
 
-```
-terraform-exercise/
-│
-├── main.tf            # Main configuration file for Terraform
-├── variables.tf       # Contains variables used in the configuration
-├── outputs.tf         # Defines the outputs of the Terraform resources
-├── provider.tf        # Defines the cloud provider configuration
-└── README.md          # Documentation (this file)
+```hcl
+<block> <parameter> {
+    <arguments>
+}
 ```
 
-## Overview
+### First Step:
 
-The Terraform configuration files define the cloud resources to be created. For this exercise, the infrastructure includes:
-
-- **Compute Resource (EC2 instance, VM, etc.)**
-- **Networking Components (VPC, Subnet, etc.)**
-- **Storage (S3, etc.)**
-- **Security Groups** to control traffic
-
-The resources are managed by the Terraform state file, ensuring that infrastructure is always in sync with the codebase.
-
-## Setup Instructions
-
-1. **Clone the repository:**
-
-   ```bash
-   git clone https://github.com/your-username/terraform-exercise.git
-   cd terraform-exercise
-   ```
-
-2. **Initialize Terraform:**
-
-   Run the following command to initialize the working directory containing the Terraform configuration files:
-
-   ```bash
-   terraform init
-   ```
-
-   This command downloads the necessary provider plugins and prepares the directory for further Terraform operations.
-
-3. **Customize Variables (Optional):**
-
-   Modify the `variables.tf` file to adjust configurations such as instance type, region, or any other resource-specific details.
-
-4. **Validate the Configuration:**
-
-   Before applying the infrastructure, you can validate your Terraform configuration files:
-
-   ```bash
-   terraform validate
-   ```
-
-5. **Apply the Configuration:**
-
-   Use the following command to create the infrastructure defined in the Terraform files:
-
-   ```bash
-   terraform apply
-   ```
-
-   This command will prompt for approval. Type `yes` to confirm and proceed with resource creation.
-
-6. **View Outputs:**
-
-   After applying the configuration, Terraform will output information about the created resources as defined in `outputs.tf`. You can also run:
-
-   ```bash
-   terraform output
-   ```
-
-   to see the outputs.
-
-## Cleanup
-
-To destroy the created infrastructure and clean up your resources, use:
+**Initialize Terraform:**
 
 ```bash
-terraform destroy
+terraform init
 ```
 
-This will remove all the resources created by Terraform.
+### Second Step:
 
+**Connect Your Cloud Provider:**  
+In this example, I am using AWS with Terraform.
+
+1. **Terraform → AWS:** 
+   - Set up IAM (Identity and Access Management) with a user that has the necessary credentials.
+   
+```plaintext
+Terraform ---> AWS --- IAM [User with credentials]
+  ^                                                    |
+  |____________________________________________________|
+```
+
+![image](https://github.com/user-attachments/assets/1ed76bcd-2184-4e87-9b02-80c986d7a44e)
+
+--> Use user credentials to connect AWS to your local machine
+
+![image](https://github.com/user-attachments/assets/225c2c8e-f9a0-45ff-9d95-bc1bf6091121)
+
+2. **AWS CLI**
+
+   - Choose Valid AWS CLI version and install it
+
+![image](https://github.com/user-attachments/assets/20558083-da7e-4637-9430-9d5135613df6)
+
+     
+3. **AWS Configure**
+
+![image](https://github.com/user-attachments/assets/3a5b2660-1a1d-4456-a897-cc0f1e48d0c6)
+
+4. **Terraform Provider**
+
+![image](https://github.com/user-attachments/assets/c7972dbd-241e-4032-a0d3-31e642c9dab9)
+
+5. **Terraform init**
+
+![image](https://github.com/user-attachments/assets/56d522b2-83a6-49da-a609-349d8a4e718b)
+
+
+## Terraform Project Structure
+
+![image](https://github.com/user-attachments/assets/e2c6750d-fc09-4402-9495-3db59b039b11)
+
+### Create S3 bucket using code
+
+1) **Terraform Plan**
+2) **Terraform Apply**
+
+![image](https://github.com/user-attachments/assets/14c6d35a-b9c9-4322-bc63-11ee7eef3403)
+
+### Create EC2 instance using code
+
+![image](https://github.com/user-attachments/assets/2b6bffd9-3735-437b-bd56-3f21aec17b7f)
+
+--> Security group, VPC, Key Pair[ssh-keygen]
+
+![image](https://github.com/user-attachments/assets/5144465f-df4f-43d2-9b8f-04d705f574b3)
+
+
+### Create DynamoDB using code
+
+![image](https://github.com/user-attachments/assets/9b56cab6-f03d-4bcd-b4cb-198c1841b5a2)
+
+### Output
+
+I want to see public ip of my ec2 instance
+![image](https://github.com/user-attachments/assets/d88fecb0-ec7b-4bc9-81bd-4cc2bf1eb226)
+
+### Terraform destroy 
+
+For all instance deletion : Terraform Destroy
+For specific instance : terraform destroy --target = aws_instance.my_instance
 
 
